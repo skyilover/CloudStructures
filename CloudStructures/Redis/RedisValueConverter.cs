@@ -26,11 +26,23 @@ namespace CloudStructures.Redis
     {
         public byte[] Serialize(object value)
         {
+            if (value is string)
+            {
+                return Encoding.UTF8.GetBytes((string)value);
+            }
             return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value));
         }
 
         public object Deserialize(Type type, byte[] value)
         {
+            if (value == null)
+            {
+                JsonConvert.DeserializeObject("", type);
+            }
+            else if (type == typeof(string))
+            {
+                return Encoding.UTF8.GetString(value);
+            }
             return JsonConvert.DeserializeObject(Encoding.UTF8.GetString(value), type);
         }
     }
