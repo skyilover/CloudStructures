@@ -35,13 +35,12 @@ namespace CloudStructures.Redis
 
         public object Deserialize(Type type, byte[] value)
         {
-            if (value == null)
+            if (type == typeof(string))
             {
-                JsonConvert.DeserializeObject("", type);
-            }
-            else if (type == typeof(string))
-            {
-                return Encoding.UTF8.GetString(value);
+                if (value == null)
+                    return JsonConvert.DeserializeObject("", type);
+                else 
+                    return Encoding.UTF8.GetString(value);
             }
             return JsonConvert.DeserializeObject(Encoding.UTF8.GetString(value), type);
         }
