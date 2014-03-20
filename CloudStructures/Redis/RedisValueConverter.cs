@@ -37,7 +37,7 @@ namespace CloudStructures.Redis
         {
             if (value == null)
             {
-                JsonConvert.DeserializeObject("", type);
+                return JsonConvert.DeserializeObject("", type);
             }
             else if (type == typeof(string))
             {
