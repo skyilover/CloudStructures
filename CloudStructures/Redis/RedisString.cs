@@ -316,4 +316,17 @@ return tostring(x)", new[] { Key }, new object[] { value, min }, useCache: true,
             });
         }
     }
+
+    public class RedisStringAnonymousType : RedisString<object>
+    {
+        public RedisStringAnonymousType(RedisSettings settings, string stringKey)
+            : base(settings, stringKey)
+        {
+        }
+
+        public RedisStringAnonymousType(RedisGroup connectionGroup, string stringKey)
+            : this(connectionGroup.GetSettings(stringKey), stringKey)
+        {
+        }
+    }
 }

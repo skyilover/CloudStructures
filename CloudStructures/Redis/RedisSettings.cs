@@ -146,6 +146,12 @@ namespace CloudStructures.Redis
             return new RedisString<T>(this, key);
         }
 
+        /// <summary>Create RedisStringAnonymousType used by this settings.</summary>
+        public RedisStringAnonymousType String(string key)
+        {
+            return new RedisStringAnonymousType(this, key);
+        }
+
         /// <summary>Create RedisList used by this settings.</summary>
         public RedisList<T> List<T>(string key)
         {
